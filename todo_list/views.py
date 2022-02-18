@@ -1,7 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
+from django.utils import timezone
+from .models import TodoTask
 
 
 def task_list(request):
-    return render(request, 'todo_list/task_list.html', {})
+    tasks = TodoTask.objects.filter(deadline_time__gt=timezone.now()).order_by('created_at')
+    return render(request, 'todo_list/task_list.html', {'tasks': tasks})

@@ -9,7 +9,7 @@ class TodoTask(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     created_at = models.DateTimeField(default=timezone.now)
-    deadline_time = models.DateTimeField()
+    deadline_time = models.DateTimeField(blank=True, null=True)
 
     def is_expired(self):
         return self.deadline_time < datetime.datetime.now()

@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django "To do list"</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Django "To do list"</a></h1>
-        </header>
+<header>
+    <h1><a href="/">To do list</a></h1>
+</header>
 
-        <article>
-            <time>published: 18.02.2022, 12:14</time>
-            <h2><a href="">My first task</a></h2>
-            <p>My first task description</p>
-        </article>
-
-        <article>
-            <time>published: 18.02.2022, 12:14</time>
-            <h2><a href="">My second task</a></h2>
-            <p>My second task description</p>
-        </article>
-    </body>
-</html>
+{% for task in tasks %}
+    <article>
+        <h2><a href="">{{ task.title }}</a></h2>
+        <time>created at time: {{ task.created_at }}</time>
+        <p>{{ task.description|linebreaksbr }}</p>
+        <p>owner: {{ task.owner|linebreaksbr }}</p>
+        <time>deadline time: {{ task.deadline_time }}</time>
+    </article>
+{% endfor %}
